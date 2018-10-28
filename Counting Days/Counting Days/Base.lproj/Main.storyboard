@@ -29,6 +29,9 @@
                                                 <color key="backgroundColor" red="0.81411917098445596" green="0.7883992209331715" blue="0.72098226028465917" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <state key="normal" title="01"/>
+                                                <connections>
+                                                    <action selector="onClick:" destination="hsl-zz-k6f" eventType="touchUpInside" id="wkN-C5-2l2"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4uw-4q-hrO" customClass="MyButton" customModule="Counting_Days" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="82.5" width="129" height="67.5"/>
