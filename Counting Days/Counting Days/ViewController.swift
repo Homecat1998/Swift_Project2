@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var model : Model?
+    
     @IBOutlet var tiles: [MyButton]!
 
     override func viewDidLoad() {
