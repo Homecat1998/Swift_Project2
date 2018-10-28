@@ -14,8 +14,18 @@ class ViewController: UIViewController, TileViewDelegate {
     
     var model = Model()
     
+    @IBOutlet weak var testLabel: UILabel!
+    
+    var isTest = false
+    
     @IBOutlet var myTiles : [TileView]!
 
+    @IBAction func isTesting(_ sender: UISwitch) {
+        
+        isTest = sender.isOn
+    }
+    
+    
     @IBAction func onReset(_ sender: UIBarButtonItem) {
         
         for i in 0..<myTiles.count {
@@ -23,6 +33,8 @@ class ViewController: UIViewController, TileViewDelegate {
             myTiles[i].delegate = self
             model.tilesArray[i].faceUp = false
         }
+        
+        model.canOpen = 0;
 
         
         updateAll()
@@ -38,6 +50,8 @@ class ViewController: UIViewController, TileViewDelegate {
             myTiles[i].delegate = self
         }
         
+        testLabel.text = NSLocalizedString("str_test", comment: "")
+        
         updateAll()
     }
     
@@ -52,6 +66,16 @@ class ViewController: UIViewController, TileViewDelegate {
             }
         }
     }
+    
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "HolidayViewSegue" {
+            
+        }
+    }
 
 
     override func didReceiveMemoryWarning() {
@@ -63,19 +87,35 @@ class ViewController: UIViewController, TileViewDelegate {
     
     func shouldFlip(_ mybutton: TileView, index: Int) -> Bool {
         
-        if (model.isFaceUp(index) || model.canOpen != index){
-            let alert = UIAlertController(
-                title: NSLocalizedString("str_selectItemToAdd", comment: ""),
-                message: nil,
-                preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: NSLocalizedString("str_cancel", comment: ""), style: .cancel)
-
+        if (model.isFaceUp(index)){
+            return false
+            
+        } else if (isTest) {
+            return true
+            
+        } else if (model.canOpen < index){
+            let alert = UIAlertController(title: NSLocalizedString("str_warning", comment: ""), message: nil,  preferredStyle: .actionSheet)
+            
+            let cancelAction = UIAlertAction(title: NSLocalizedString("str_cancel", comment: ""),
+                                             style: .cancel, handler:nil)
+            
             alert.addAction(cancelAction)
+            
+            alert.popoverPresentationController?.permittedArrowDirections = []
+            alert.popoverPresentationController?.sourceView = self.view
+            alert.popoverPresentationController?.sourceRect = CGRect(x: self.view.frame.midX, y: self.view.frame.midY, width: 0, height: 0)
+            
             self.present(alert, animated: true)
             
-            return false;
-        } else {
+            return false
+            
+        } else if (index == 23){
+            
+            self.performSegue(withIdentifier: "HolidayViewSegue", sender: self)
             return true;
+            
+        } else {
+            return true
         }
         
     }

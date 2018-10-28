@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A5E2423218644B400147797 /* HolidayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E2422218644B400147797 /* HolidayViewController.swift */; };
+		7A5E24252186505E00147797 /* HolidaySelectTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E24242186505E00147797 /* HolidaySelectTVC.swift */; };
 		7A99BFEA21853987007F00ED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A99BFE921853987007F00ED /* Model.swift */; };
 		7AC6BF612185536D0094FBAB /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6BF602185536D0094FBAB /* TileView.swift */; };
-		7ADFB2A621856C0B00BD74D7 /* Localizable.string.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ADFB2A521856C0B00BD74D7 /* Localizable.string.strings */; };
+		7ADFB2A621856C0B00BD74D7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ADFB2A521856C0B00BD74D7 /* Localizable.strings */; };
 		7AE75B5021850875000F3DEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE75B4F21850875000F3DEB /* AppDelegate.swift */; };
 		7AE75B5221850875000F3DEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE75B5121850875000F3DEB /* ViewController.swift */; };
 		7AE75B5521850875000F3DEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AE75B5321850875000F3DEB /* Main.storyboard */; };
@@ -35,9 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7A5E2422218644B400147797 /* HolidayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayViewController.swift; sourceTree = "<group>"; };
+		7A5E24242186505E00147797 /* HolidaySelectTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaySelectTVC.swift; sourceTree = "<group>"; };
 		7A99BFE921853987007F00ED /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7AC6BF602185536D0094FBAB /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
-		7ADFB2A521856C0B00BD74D7 /* Localizable.string.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.string.strings; sourceTree = "<group>"; };
+		7ADFB2A521856C0B00BD74D7 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		7AE75B4C21850875000F3DEB /* Counting Days.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Counting Days.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AE75B4F21850875000F3DEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AE75B5121850875000F3DEB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,7 +81,7 @@
 		7ADFB2A421856BC900BD74D7 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
-				7ADFB2A521856C0B00BD74D7 /* Localizable.string.strings */,
+				7ADFB2A521856C0B00BD74D7 /* Localizable.strings */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -112,6 +116,8 @@
 				7AE75B5B21850876000F3DEB /* Info.plist */,
 				7AC6BF602185536D0094FBAB /* TileView.swift */,
 				7A99BFE921853987007F00ED /* Model.swift */,
+				7A5E2422218644B400147797 /* HolidayViewController.swift */,
+				7A5E24242186505E00147797 /* HolidaySelectTVC.swift */,
 			);
 			path = "Counting Days";
 			sourceTree = "<group>";
@@ -221,7 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AE75B5A21850876000F3DEB /* LaunchScreen.storyboard in Resources */,
-				7ADFB2A621856C0B00BD74D7 /* Localizable.string.strings in Resources */,
+				7ADFB2A621856C0B00BD74D7 /* Localizable.strings in Resources */,
 				7AE75B5721850876000F3DEB /* Assets.xcassets in Resources */,
 				7AE75B5521850875000F3DEB /* Main.storyboard in Resources */,
 			);
@@ -248,9 +254,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A5E24252186505E00147797 /* HolidaySelectTVC.swift in Sources */,
 				7AE75B5221850875000F3DEB /* ViewController.swift in Sources */,
 				7AE75B5021850875000F3DEB /* AppDelegate.swift in Sources */,
 				7AC6BF612185536D0094FBAB /* TileView.swift in Sources */,
+				7A5E2423218644B400147797 /* HolidayViewController.swift in Sources */,
 				7A99BFEA21853987007F00ED /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

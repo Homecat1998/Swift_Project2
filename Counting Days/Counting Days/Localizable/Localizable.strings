@@ -1,0 +1,13 @@
+/* 
+  Localizable.string.strings
+  Counting Days
+
+  Created by Zhong, Zhetao on 10/28/18.
+  Copyright © 2018 Zhong, Zhetao. All rights reserved.
+*/
+"str_reset"                             = "Reset";
+"str_selectHoliday"                     = "Select Holiday";
+
+"str_warning"                           = "It is too early to open this!";
+"str_cancel"                            = "Cancel";
+"str_test"                              = "Test Mode";

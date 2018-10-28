@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -514,11 +515,30 @@
                                     <constraint firstAttribute="width" constant="560" id="R78-bL-ich"/>
                                 </constraints>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9em-Na-D7w">
+                                <rect key="frame" x="332" y="981" width="105" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqs-bp-dDS">
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HYQ-zt-Iog">
+                                        <rect key="frame" x="56" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="isTesting:" destination="hsl-zz-k6f" eventType="valueChanged" id="VId-f4-ulb"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="oDL-Xp-gk3" firstAttribute="centerY" secondItem="dRi-EI-rcT" secondAttribute="centerY" id="WvV-uL-jig"/>
                             <constraint firstItem="oDL-Xp-gk3" firstAttribute="centerX" secondItem="dRi-EI-rcT" secondAttribute="centerX" id="cHV-Pw-Cam"/>
+                            <constraint firstItem="i6j-4K-pur" firstAttribute="bottom" secondItem="9em-Na-D7w" secondAttribute="bottom" constant="12" id="oI4-4a-xn6"/>
+                            <constraint firstItem="9em-Na-D7w" firstAttribute="centerX" secondItem="dRi-EI-rcT" secondAttribute="centerX" id="w7s-Aw-B2g"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i6j-4K-pur"/>
                     </view>
@@ -530,6 +550,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="testLabel" destination="Qqs-bp-dDS" id="prU-p2-ROP"/>
                         <outletCollection property="myTiles" destination="qQF-c3-E9g" collectionClass="NSMutableArray" id="Ihz-BB-B7Q"/>
                         <outletCollection property="myTiles" destination="Fsn-lO-pmt" collectionClass="NSMutableArray" id="UJg-mp-uTO"/>
                         <outletCollection property="myTiles" destination="zVu-AR-wcU" collectionClass="NSMutableArray" id="aOP-uX-YOy"/>
@@ -554,6 +575,7 @@
                         <outletCollection property="myTiles" destination="xmp-FO-bX5" collectionClass="NSMutableArray" id="Tat-PU-z5v"/>
                         <outletCollection property="myTiles" destination="53Y-Ah-b2K" collectionClass="NSMutableArray" id="bv2-Hl-S0v"/>
                         <outletCollection property="myTiles" destination="5Co-ij-65f" collectionClass="NSMutableArray" id="pMV-70-N0Y"/>
+                        <segue destination="ccd-pb-STd" kind="show" identifier="HolidayViewSegue" id="2ce-BH-MAS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="se9-8d-qhw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -576,7 +598,34 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W2y-rz-6ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40.625" y="-598.2421875"/>
+            <point key="canvasLocation" x="61" y="-696"/>
+        </scene>
+        <!--Holiday View Controller-->
+        <scene sceneID="Nt9-Pz-uwA">
+            <objects>
+                <viewController id="ccd-pb-STd" customClass="HolidayViewController" customModule="Counting_Days" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Mk-O2-zFS">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Happy Holiday!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEt-zW-aJO">
+                                <rect key="frame" x="221.5" y="482" width="325.5" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GEt-zW-aJO" firstAttribute="centerY" secondItem="5Mk-O2-zFS" secondAttribute="centerY" id="kki-mC-CJd"/>
+                            <constraint firstItem="GEt-zW-aJO" firstAttribute="centerX" secondItem="5Mk-O2-zFS" secondAttribute="centerX" id="t7B-xA-IF3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MHg-BE-9wT"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5OY-gg-ree" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1213" y="60"/>
         </scene>
     </scenes>
 </document>
