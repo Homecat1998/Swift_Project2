@@ -12,8 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var FileName = "CountingDaysFile"
-    var model : Model!
+    var FileName = "CDFile"
+    var model = Model()
     
     lazy var fileURL: URL = {
         let documentsDir =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        loadData()
+//        loadData()
         
         if let naviController = window?.rootViewController as? UINavigationController {
             if let mainViewController = naviController.viewControllers.last as? ViewController {
@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        saveData()
+//        saveData()
     }
 
 
@@ -57,42 +57,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK - Persistence Methods
     
-    func saveData() {
-        
-        if FileManager.default.fileExists(atPath: fileURL.path) {
-            do {
-                try FileManager.default.removeItem(at: fileURL)
-            } catch {
-                fatalError(error.localizedDescription)
-            }
-        }
-        
-        if let encodedData = try? JSONEncoder().encode(model) {
-            FileManager.default.createFile(atPath: fileURL.path, contents: encodedData, attributes: nil)
-        } else {
-            fatalError("Couldn't write data!")
-        }
-    }
-    
-    func loadData() {
-        
-        if !FileManager.default.fileExists(atPath: fileURL.path) {
-            model = Model()
-            return
-        }
-        
-        if let jsondata = FileManager.default.contents(atPath: fileURL.path) {
-            let decoder = JSONDecoder()
-            do {
-                let modelRead = try decoder.decode(Model.self, from: jsondata)
-                model = modelRead
-            } catch {
-                fatalError(error.localizedDescription)
-            }
-        } else {
-            fatalError("No data at \(fileURL.path)!")
-        }
-    }
+//    func saveData() {
+//
+//        if FileManager.default.fileExists(atPath: fileURL.path) {
+//            do {
+//                try FileManager.default.removeItem(at: fileURL)
+//            } catch {
+//                fatalError(error.localizedDescription)
+//            }
+//        }
+//
+//        if let encodedData = try? JSONEncoder().encode(model) {
+//            FileManager.default.createFile(atPath: fileURL.path, contents: encodedData, attributes: nil)
+//        } else {
+//            fatalError("Couldn't write data!")
+//        }
+//    }
+//
+//    func loadData() {
+//
+//        if !FileManager.default.fileExists(atPath: fileURL.path) {
+//            model = Model()
+//            return
+//        }
+//
+//        if let jsondata = FileManager.default.contents(atPath: fileURL.path) {
+//            let decoder = JSONDecoder()
+//            do {
+//                let modelRead = try decoder.decode(Model.self, from: jsondata)
+//                model = modelRead
+//            } catch {
+//                fatalError(error.localizedDescription)
+//            }
+//        } else {
+//            fatalError("No data at \(fileURL.path)!")
+//        }
+//    }
 
 
 }

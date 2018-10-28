@@ -16,9 +16,11 @@ struct Tile : Codable {
 
 class Model : Codable {
     
-    private let emojis = "🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🍍🥥🥝🍅🍆🥑🥦🥒🌶🌽🥕🥔"
+    private let emojis = "🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🍍🥥🥝🍅🍆🥑🥦🥒🌶🌽🥕🥔🍏🍎"
     
     var tilesArray = [Tile]()
+    
+    var canOpen = 1
     
     func initGame(with numberOfTiles: Int) {
         
@@ -29,13 +31,9 @@ class Model : Codable {
             let endSlice = emojis.index(startSlice, offsetBy: 1)
             let slice = String(emojis[startSlice..<endSlice])
             
-            // do it twice
-            emojisArray.append(slice)
+            
             emojisArray.append(slice)
         }
-        
-        // comment out for debugging
-        //        randomEmojisArray.shuffle()
         
         for i in 0..<numberOfTiles {
             let tile = Tile(index: i, faceUp: false, emoji: emojisArray[i])
@@ -46,6 +44,10 @@ class Model : Codable {
     
     func isFaceUp(_ index: Int) -> Bool {
         return tilesArray[index].faceUp
+    }
+    
+    func faceUpTiles() -> [Tile] {
+        return tilesArray.filter { $0.faceUp == true }
     }
     
     func emoji(for index: Int) -> String? {

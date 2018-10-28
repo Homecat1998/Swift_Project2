@@ -8,24 +8,34 @@
 
 import UIKit
 
-class ViewController: UIViewController, EmojiTileViewDelegate {
+class ViewController: UIViewController, TileViewDelegate {
 
     
     
-    var model : Model?
+    var model = Model()
     
-    @IBOutlet var tiles: [MyButton]!
+    @IBOutlet var myTiles : [TileView]!
 
+    @IBAction func onReset(_ sender: UIBarButtonItem) {
+        
+        for i in 0..<myTiles.count {
+            myTiles[i].index = model.tilesArray[i].index
+            myTiles[i].delegate = self
+            model.tilesArray[i].faceUp = false
+        }
+
+        
+        updateAll()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        model?.initGame(with: 24)
+        model.initGame(with: 24)
         // Do any additional setup after loading the view, typically from a nib.
         
-        for i in 0..<tiles.count {
-            if let idx = model?.tilesArray[i].index{
-                tiles[i].index = idx
-                tiles[i].delegate = self
-            }
+        for i in 0..<myTiles.count {
+            myTiles[i].index = model.tilesArray[i].index
+            myTiles[i].delegate = self
         }
         
         updateAll()
@@ -33,7 +43,14 @@ class ViewController: UIViewController, EmojiTileViewDelegate {
     
     
     func updateAll() {
-        
+        for i in 0..<myTiles.count {
+            if model.isFaceUp(i) {
+                myTiles[i].backgroundColor = .white
+                myTiles[i].title = model.emoji(for: i)!
+            } else {
+                myTiles[i].title = String(model.tilesArray[i].index + 1)
+            }
+        }
     }
 
 
@@ -43,20 +60,29 @@ class ViewController: UIViewController, EmojiTileViewDelegate {
     }
     
     
-    func shouldFlip(_ mybutton: MyButton, index: Int) -> Bool {
+    
+    func shouldFlip(_ mybutton: TileView, index: Int) -> Bool {
         
-        if let up = model?.isFaceUp(index){
-            if up {
-                return false
-            } else {
-                return true
-            }
+        if (model.isFaceUp(index) || model.canOpen != index){
+            let alert = UIAlertController(
+                title: NSLocalizedString("Not the time yet!", comment: ""),
+                message: nil,
+                preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("str_cancel", comment: ""), style: .cancel)
+            
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true)
+            
+            return false;
         } else {
-            return false
+            return true;
         }
+        
     }
     
-    func didFlip(_ mybutton: MyButton, index: Int) {
+    func didFlip(_ mybutton: TileView, index: Int) {
+        model.tilesArray[index].faceUp = true
+        model.canOpen = index + 1
         updateAll()
     }
     
