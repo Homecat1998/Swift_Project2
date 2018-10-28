@@ -90,6 +90,10 @@ class ViewController: UIViewController, TileViewDelegate {
         if (model.isFaceUp(index)){
             return false
             
+        } else if (isTest && index == 23){
+            self.performSegue(withIdentifier: "HolidayViewSegue", sender: self)
+            return true;
+            
         } else if (isTest) {
             return true
             
