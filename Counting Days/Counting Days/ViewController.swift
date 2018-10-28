@@ -65,11 +65,11 @@ class ViewController: UIViewController, TileViewDelegate {
         
         if (model.isFaceUp(index) || model.canOpen != index){
             let alert = UIAlertController(
-                title: NSLocalizedString("Not the time yet!", comment: ""),
+                title: NSLocalizedString("str_selectItemToAdd", comment: ""),
                 message: nil,
                 preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: NSLocalizedString("str_cancel", comment: ""), style: .cancel)
-            
+
             alert.addAction(cancelAction)
             self.present(alert, animated: true)
             

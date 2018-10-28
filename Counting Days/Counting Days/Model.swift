@@ -20,7 +20,7 @@ class Model : Codable {
     
     var tilesArray = [Tile]()
     
-    var canOpen = 1
+    var canOpen = 0
     
     func initGame(with numberOfTiles: Int) {
         
