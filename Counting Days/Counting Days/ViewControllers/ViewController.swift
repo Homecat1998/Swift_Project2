@@ -33,13 +33,22 @@ class ViewController: UIViewController, TileViewDelegate{
     
     @IBAction func onReset(_ sender: UIBarButtonItem) {
         
+        resetAlert( completion: { _ in
+            self.realReset()
+        })
+        
+
+    }
+    
+    
+    func realReset () {
         for i in 0..<myTiles.count {
             myTiles[i].index = model.tilesArray[i].index
             myTiles[i].delegate = self
             model.tilesArray[i].faceUp = false
         }
         
-        
+        model.currentHoliday = HolidayType.None
         model.canOpen = 0;
         updateAll()
     }
@@ -71,12 +80,11 @@ class ViewController: UIViewController, TileViewDelegate{
                 myTiles[i].title = String(model.tilesArray[i].index + 1)
             }
         }
-        genereteColor(colorInt: model.bgColor)
-        view.backgroundColor = bgColor
+        view.backgroundColor = model.currentHoliday.color()
     }
     
     
-    // MARK: - Navigation
+    // Navigation Preparation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -89,30 +97,37 @@ class ViewController: UIViewController, TileViewDelegate{
     }
     
     
-    func genereteColor(colorInt : Int) {
-        if (model.bgColor == 0) {
-            bgColor = UIColor.white
-        } else if (model.bgColor == 1){
-            bgColor = UIColor.brown
-        } else if (model.bgColor == 2){
-            bgColor = UIColor.green
-        } else if (model.bgColor == 3){
-            bgColor = UIColor.orange
-        }
+    
+    
+    // Reset Alert
+    
+    func resetAlert(completion: @escaping (UIAlertAction) -> Void) {
+        
+        let alert = UIAlertController(title: NSLocalizedString("str_resetWarning", comment: ""),
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
+        
+        let deleteAction = UIAlertAction(title: NSLocalizedString("str_reset", comment: ""),
+                                         style: .destructive, handler: completion)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("str_cancel", comment: ""),
+                                         style: .cancel, handler:nil)
+        
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        
+        /*
+         **  In this case we need a source for the popover as well, but don't have a handy UIBarButtonItem.
+         **  As alternative we therefore use the sourceView/sourceRect combination and specify a rectangel
+         **  centered in the view of our viewController.
+         */
+        alert.popoverPresentationController?.permittedArrowDirections = []
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect(x: self.view.frame.midX, y: self.view.frame.midY, width: 0, height: 0)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     
-    func setColorToModel(color : UIColor){
-        if (color == UIColor.white) {
-            model.bgColor = 0
-        } else if (color == UIColor.brown){
-            model.bgColor = 1
-        } else if (color == UIColor.green){
-            model.bgColor = 2
-        } else if (color == UIColor.orange){
-            model.bgColor = 3
-        }
-    }
 
 
     override func didReceiveMemoryWarning() {
@@ -174,7 +189,7 @@ extension ViewController : HSTVCDelegate {
     
     func didSelect(_ holidayType: HolidayType) {
         print("Did select!")
-        setColorToModel(color: holidayType.color())
+        model.currentHoliday = holidayType
         updateAll()
     }
     

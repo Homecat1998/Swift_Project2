@@ -8,15 +8,16 @@
 
 import UIKit
 
-enum HolidayType: Int {
-    case Halloween, Christmas, Thanksgiving
-    static let allValues = [Halloween, Christmas, Thanksgiving]
+enum HolidayType: Int, Codable {
+    case None, Halloween, Christmas, Thanksgiving
+    static let allValues = [None, Halloween, Christmas, Thanksgiving]
     
     func color() -> UIColor {
         switch self {
-        case .Halloween:      return UIColor.brown
-        case .Christmas:    return UIColor.green
-        case .Thanksgiving:     return UIColor.orange
+        case .None:         return UIColor.white
+        case .Halloween:      return UIColor(red: 0.8, green: 0.4, blue: 0, alpha: 1.0)
+        case .Christmas:    return UIColor(red: 0.302, green: 0.6471, blue: 0, alpha: 1.0)
+        case .Thanksgiving:     return UIColor(red: 0, green: 0.5059, blue: 0.6588, alpha: 1.0)
         }
     }
     
@@ -52,13 +53,13 @@ class HolidaySelectTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return HolidayType.allValues.count
+        return HolidayType.allValues.count - 1
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         print("select")
-        if let type = HolidayType(rawValue: indexPath.row){
+        if let type = HolidayType(rawValue: indexPath.row + 1){
             print(type)
             delegate?.didSelect(type)
         }
@@ -71,7 +72,7 @@ class HolidaySelectTVC: UITableViewController {
             fatalError("Expected TableCell")
         }
         
-        cell.holidayLabel.text = HolidayType(rawValue: indexPath.row)?.title()
+        cell.holidayLabel.text = HolidayType(rawValue: indexPath.row + 1)?.title()
         
 
         return cell

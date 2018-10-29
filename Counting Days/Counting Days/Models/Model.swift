@@ -24,6 +24,8 @@ class Model : Codable {
     
     var bgColor = 0
     
+    var currentHoliday = HolidayType.None
+    
     
     func initGame(with numberOfTiles: Int) {
         
