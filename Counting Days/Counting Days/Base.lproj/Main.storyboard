@@ -557,6 +557,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="mySwitch" destination="HYQ-zt-Iog" id="XJY-N1-wxq"/>
                         <outlet property="selectBtn" destination="2kl-R8-8zz" id="Njg-mY-BFr"/>
                         <outlet property="testLabel" destination="Qqs-bp-dDS" id="prU-p2-ROP"/>
                         <outletCollection property="myTiles" destination="qQF-c3-E9g" collectionClass="NSMutableArray" id="Ihz-BB-B7Q"/>

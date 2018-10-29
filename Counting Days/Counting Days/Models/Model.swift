@@ -22,7 +22,7 @@ class Model : Codable {
     
     var canOpen = 0
     
-    var bgColor = 0
+    var isTest = false
     
     var currentHoliday = HolidayType.None
     

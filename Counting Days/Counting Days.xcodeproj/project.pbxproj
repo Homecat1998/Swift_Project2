@@ -103,9 +103,17 @@
 		7ADFB2A421856BC900BD74D7 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
-				7ADFB2A521856C0B00BD74D7 /* Localizable.strings */,
+				7AE4420921877EF100B55DC5 /* en.Iproj */,
 			);
 			path = Localizable;
+			sourceTree = "<group>";
+		};
+		7AE4420921877EF100B55DC5 /* en.Iproj */ = {
+			isa = PBXGroup;
+			children = (
+				7ADFB2A521856C0B00BD74D7 /* Localizable.strings */,
+			);
+			path = en.Iproj;
 			sourceTree = "<group>";
 		};
 		7AE75B4321850875000F3DEB = {

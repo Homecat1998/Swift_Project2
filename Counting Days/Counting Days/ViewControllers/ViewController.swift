@@ -16,18 +16,17 @@ class ViewController: UIViewController, TileViewDelegate{
     
     @IBOutlet weak var testLabel: UILabel!
     
-    var isTest = false
-    
     var bgColor = UIColor.white
     
     @IBOutlet var myTiles : [TileView]!
     
-
+    @IBOutlet weak var mySwitch: UISwitch!
+    
     @IBOutlet weak var selectBtn: UIBarButtonItem!
     
     @IBAction func isTesting(_ sender: UISwitch) {
         
-        isTest = sender.isOn
+        model.isTest = sender.isOn
     }
     
     
@@ -81,6 +80,11 @@ class ViewController: UIViewController, TileViewDelegate{
             }
         }
         view.backgroundColor = model.currentHoliday.color()
+        if (model.isTest){
+            mySwitch.setOn(true, animated: true)
+        } else {
+            mySwitch.setOn(false, animated: true)
+        }
     }
     
     
@@ -142,11 +146,11 @@ class ViewController: UIViewController, TileViewDelegate{
         if (model.isFaceUp(index)){
             return false
             
-        } else if (isTest && index == 23){
+        } else if (model.isTest && index == 23){
             self.performSegue(withIdentifier: "HolidayViewSegue", sender: self)
             return true;
             
-        } else if (isTest) {
+        } else if (model.isTest) {
             return true
             
         } else if (model.canOpen < index){
@@ -177,8 +181,13 @@ class ViewController: UIViewController, TileViewDelegate{
     }
     
     func didFlip(_ mybutton: TileView, index: Int) {
-        model.tilesArray[index].faceUp = true
-        model.canOpen = index + 1
+        if model.canOpen > index {
+            model.tilesArray[index].faceUp = true
+        } else {
+            model.tilesArray[index].faceUp = true
+            model.canOpen = index + 1
+        }
+
         updateAll()
     }
     
