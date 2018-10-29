@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, TileViewDelegate, HSTVCDelegate {
+class ViewController: UIViewController, TileViewDelegate{
     
     
     var model = Model()
+    
     
     @IBOutlet weak var testLabel: UILabel!
     
@@ -20,6 +21,7 @@ class ViewController: UIViewController, TileViewDelegate, HSTVCDelegate {
     var bgColor = UIColor.white
     
     @IBOutlet var myTiles : [TileView]!
+    
 
     @IBOutlet weak var selectBtn: UIBarButtonItem!
     
@@ -37,11 +39,11 @@ class ViewController: UIViewController, TileViewDelegate, HSTVCDelegate {
             model.tilesArray[i].faceUp = false
         }
         
-        model.canOpen = 0;
-
         
+        model.canOpen = 0;
         updateAll()
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +71,7 @@ class ViewController: UIViewController, TileViewDelegate, HSTVCDelegate {
                 myTiles[i].title = String(model.tilesArray[i].index + 1)
             }
         }
+        genereteColor(colorInt: model.bgColor)
         view.backgroundColor = bgColor
     }
     
@@ -78,7 +81,36 @@ class ViewController: UIViewController, TileViewDelegate, HSTVCDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "HolidayViewSegue" {
-            
+        } else if (segue.identifier == "SelectSegue"){
+            if let holidaySelectTVC = segue.destination as? HolidaySelectTVC  {
+                holidaySelectTVC.delegate = self
+            }
+        }
+    }
+    
+    
+    func genereteColor(colorInt : Int) {
+        if (model.bgColor == 0) {
+            bgColor = UIColor.white
+        } else if (model.bgColor == 1){
+            bgColor = UIColor.brown
+        } else if (model.bgColor == 2){
+            bgColor = UIColor.green
+        } else if (model.bgColor == 3){
+            bgColor = UIColor.orange
+        }
+    }
+    
+    
+    func setColorToModel(color : UIColor){
+        if (color == UIColor.white) {
+            model.bgColor = 0
+        } else if (color == UIColor.brown){
+            model.bgColor = 1
+        } else if (color == UIColor.green){
+            model.bgColor = 2
+        } else if (color == UIColor.orange){
+            model.bgColor = 3
         }
     }
 
@@ -135,13 +167,17 @@ class ViewController: UIViewController, TileViewDelegate, HSTVCDelegate {
         updateAll()
     }
     
+}
+
+
+extension ViewController : HSTVCDelegate {
+    
     func didSelect(_ holidayType: HolidayType) {
-        bgColor = holidayType.color()
-        view.backgroundColor = bgColor
+        print("Did select!")
+        setColorToModel(color: holidayType.color())
         updateAll()
     }
     
     
-
 }
 

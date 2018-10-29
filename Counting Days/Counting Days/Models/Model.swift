@@ -22,6 +22,9 @@ class Model : Codable {
     
     var canOpen = 0
     
+    var bgColor = 0
+    
+    
     func initGame(with numberOfTiles: Int) {
         
         var emojisArray = [String]()

@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol HSTVCDelegate : class {
-    func didSelect (_ holidayType : HolidayType)
-}
-
 enum HolidayType: Int {
     case Halloween, Christmas, Thanksgiving
     static let allValues = [Halloween, Christmas, Thanksgiving]
@@ -30,21 +26,17 @@ enum HolidayType: Int {
     
 }
 
+protocol HSTVCDelegate : class  {
+    func didSelect (_ holidayType : HolidayType)
+}
+
 class HolidaySelectTVC: UITableViewController {
+   
+    weak var delegate: HSTVCDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
-    weak var deligate: HSTVCDelegate?
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -64,8 +56,11 @@ class HolidaySelectTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print("select")
         if let type = HolidayType(rawValue: indexPath.row){
-            deligate?.didSelect(type)
+            print(type)
+            delegate?.didSelect(type)
         }
     }
     
@@ -78,8 +73,6 @@ class HolidaySelectTVC: UITableViewController {
         
         cell.holidayLabel.text = HolidayType(rawValue: indexPath.row)?.title()
         
-
-        // Configure the cell...
 
         return cell
     }
@@ -131,3 +124,5 @@ class HolidaySelectTVC: UITableViewController {
     */
 
 }
+
+

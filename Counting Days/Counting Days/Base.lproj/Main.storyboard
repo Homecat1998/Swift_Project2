@@ -550,7 +550,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="2kl-R8-8zz">
                             <connections>
-                                <segue destination="b33-yf-YxM" kind="popoverPresentation" popoverAnchorBarButtonItem="2kl-R8-8zz" id="tIV-TQ-d3r">
+                                <segue destination="b33-yf-YxM" kind="popoverPresentation" identifier="SelectSegue" popoverAnchorBarButtonItem="2kl-R8-8zz" id="tIV-TQ-d3r">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
