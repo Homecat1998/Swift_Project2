@@ -27,7 +27,7 @@ class TileView: UIView {
             label.text = title
         }
     }
-    
+     
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
