@@ -26,7 +26,13 @@ class ViewController: UIViewController, TileViewDelegate{
     
     @IBAction func isTesting(_ sender: UISwitch) {
         
-        model.isTest = sender.isOn
+        if (sender.isOn){
+            model.isTest = true
+        } else {
+            model.isTest = false
+            realReset()
+        }
+        
     }
     
     
@@ -48,7 +54,8 @@ class ViewController: UIViewController, TileViewDelegate{
         }
         
         model.currentHoliday = HolidayType.None
-        model.canOpen = 0;
+        model.canOpen = 0
+        model.isTest = false
         updateAll()
     }
     

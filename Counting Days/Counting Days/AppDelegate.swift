@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var FileName = "CDFile"
+    var FileName = "CountingDaysFile"
     var model = Model()
     
     lazy var fileURL: URL = {
