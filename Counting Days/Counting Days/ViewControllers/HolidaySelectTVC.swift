@@ -8,14 +8,34 @@
 
 import UIKit
 
-//protocol HSTVCDelegate {
-//    func didSelect (_ holidayType : HolidayType)
-//}
+protocol HSTVCDelegate : class {
+    func didSelect (_ holidayType : HolidayType)
+}
+
+enum HolidayType: Int {
+    case Halloween, Christmas, Thanksgiving
+    static let allValues = [Halloween, Christmas, Thanksgiving]
+    
+    func color() -> UIColor {
+        switch self {
+        case .Halloween:      return UIColor.brown
+        case .Christmas:    return UIColor.green
+        case .Thanksgiving:     return UIColor.orange
+        }
+    }
+    
+    func title() -> String {
+        return String(describing: self).capitalized
+    }
+    
+}
 
 class HolidaySelectTVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -23,6 +43,8 @@ class HolidaySelectTVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    weak var deligate: HSTVCDelegate?
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -38,18 +60,30 @@ class HolidaySelectTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return HolidayType.allValues.count
     }
-
-    /*
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let type = HolidayType(rawValue: indexPath.row){
+            deligate?.didSelect(type)
+        }
+    }
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseIdentifier") as? myTableViewCell else {
+            fatalError("Expected TableCell")
+        }
+        
+        cell.holidayLabel.text = HolidayType(rawValue: indexPath.row)?.title()
+        
 
         // Configure the cell...
 
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.

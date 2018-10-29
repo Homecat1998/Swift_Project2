@@ -8,8 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, TileViewDelegate {
-
+class ViewController: UIViewController, TileViewDelegate, HSTVCDelegate {
     
     
     var model = Model()
@@ -18,8 +17,12 @@ class ViewController: UIViewController, TileViewDelegate {
     
     var isTest = false
     
+    var bgColor = UIColor.white
+    
     @IBOutlet var myTiles : [TileView]!
 
+    @IBOutlet weak var selectBtn: UIBarButtonItem!
+    
     @IBAction func isTesting(_ sender: UISwitch) {
         
         isTest = sender.isOn
@@ -50,6 +53,7 @@ class ViewController: UIViewController, TileViewDelegate {
             myTiles[i].delegate = self
         }
         
+        selectBtn.title = NSLocalizedString("str_selectHoliday", comment: "")
         testLabel.text = NSLocalizedString("str_test", comment: "")
         
         updateAll()
@@ -65,6 +69,7 @@ class ViewController: UIViewController, TileViewDelegate {
                 myTiles[i].title = String(model.tilesArray[i].index + 1)
             }
         }
+        view.backgroundColor = bgColor
     }
     
     
@@ -127,6 +132,12 @@ class ViewController: UIViewController, TileViewDelegate {
     func didFlip(_ mybutton: TileView, index: Int) {
         model.tilesArray[index].faceUp = true
         model.canOpen = index + 1
+        updateAll()
+    }
+    
+    func didSelect(_ holidayType: HolidayType) {
+        bgColor = holidayType.color()
+        view.backgroundColor = bgColor
         updateAll()
     }
     

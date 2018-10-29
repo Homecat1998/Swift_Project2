@@ -14,10 +14,6 @@ struct Tile : Codable {
     var emoji = ""
 }
 
-struct HolidayType {
-    var index = 0
-}
-
 class Model : Codable {
     
     private let emojis = "🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🍍🥥🥝🍅🍆🥑🥦🥒🌶🌽🥕🥔🍏🍎"
