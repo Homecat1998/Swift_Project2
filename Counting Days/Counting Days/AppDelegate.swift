@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-//        loadData()
+        loadData()
         
         if let naviController = window?.rootViewController as? UINavigationController {
             if let mainViewController = naviController.viewControllers.last as? ViewController {
@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-//        saveData()
+        saveData()
     }
 
 
