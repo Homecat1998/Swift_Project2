@@ -13,3 +13,7 @@
 "str_test"                              = "Test Mode";
 
 "str_resetWarning"                      = "Do you really want to reset?";
+
+"str_halloween"                         = "Halloween";
+"str_christmas"                         = "Christmas";
+"str_thanksgiving"                      = "Thanksgiving";

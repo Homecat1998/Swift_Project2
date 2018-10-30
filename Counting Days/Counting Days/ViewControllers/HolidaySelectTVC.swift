@@ -9,12 +9,11 @@
 import UIKit
 
 enum HolidayType: Int, Codable {
-    case None, Halloween, Christmas, Thanksgiving
-    static let allValues = [None, Halloween, Christmas, Thanksgiving]
+    case Halloween, Christmas, Thanksgiving
+    static let allValues = [Halloween, Christmas, Thanksgiving]
     
     func color() -> UIColor {
         switch self {
-        case .None:         return UIColor.white
         case .Halloween:      return UIColor(red: 0.8, green: 0.4, blue: 0, alpha: 1.0)
         case .Christmas:    return UIColor(red: 0.302, green: 0.6471, blue: 0, alpha: 1.0)
         case .Thanksgiving:     return UIColor(red: 0, green: 0.5059, blue: 0.6588, alpha: 1.0)
@@ -22,7 +21,13 @@ enum HolidayType: Int, Codable {
     }
     
     func title() -> String {
-        return String(describing: self).capitalized
+        
+        switch self {
+        case .Halloween:         return NSLocalizedString("str_halloween", comment: "").capitalized
+        case .Christmas:         return NSLocalizedString("str_christmas", comment: "")
+        case .Thanksgiving:         return NSLocalizedString("str_thanksgiving", comment: "")
+        }
+
     }
     
 }
@@ -53,13 +58,13 @@ class HolidaySelectTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return HolidayType.allValues.count - 1
+        return HolidayType.allValues.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         print("select")
-        if let type = HolidayType(rawValue: indexPath.row + 1){
+        if let type = HolidayType(rawValue: indexPath.row){
             print(type)
             delegate?.didSelect(type)
         }
@@ -72,7 +77,7 @@ class HolidaySelectTVC: UITableViewController {
             fatalError("Expected TableCell")
         }
         
-        cell.holidayLabel.text = HolidayType(rawValue: indexPath.row + 1)?.title()
+        cell.holidayLabel.text = HolidayType(rawValue: indexPath.row)?.title()
         
 
         return cell

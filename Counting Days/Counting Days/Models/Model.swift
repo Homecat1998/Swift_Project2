@@ -24,7 +24,7 @@ class Model : Codable {
     
     var isTest = false
     
-    var currentHoliday = HolidayType.None
+    var currentHoliday = HolidayType.Halloween
     
     
     func initGame(with numberOfTiles: Int) {

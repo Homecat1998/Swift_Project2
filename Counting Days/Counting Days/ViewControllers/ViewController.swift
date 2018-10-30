@@ -53,7 +53,7 @@ class ViewController: UIViewController, TileViewDelegate{
             model.tilesArray[i].faceUp = false
         }
         
-        model.currentHoliday = HolidayType.None
+        model.currentHoliday = HolidayType.Halloween
         model.canOpen = 0
         model.isTest = false
         updateAll()
@@ -92,7 +92,14 @@ class ViewController: UIViewController, TileViewDelegate{
         } else {
             mySwitch.setOn(false, animated: true)
         }
+        
+        
+        self.navigationItem.title = model.currentHoliday.title()
+        
     }
+    
+    
+
     
     
     // Navigation Preparation
