@@ -12,6 +12,7 @@ enum HolidayType: Int, Codable {
     case Halloween, Christmas, Thanksgiving
     static let allValues = [Halloween, Christmas, Thanksgiving]
     
+    // return background color for different holiday
     func color() -> UIColor {
         switch self {
         case .Halloween:      return UIColor(red: 0.8, green: 0.4, blue: 0, alpha: 1.0)
@@ -20,6 +21,7 @@ enum HolidayType: Int, Codable {
         }
     }
     
+    // return holiday title
     func title() -> String {
         
         switch self {

@@ -35,7 +35,8 @@ class ViewController: UIViewController, TileViewDelegate{
         
     }
     
-    
+    // set an alert
+    // if true, go to real reset
     @IBAction func onReset(_ sender: UIBarButtonItem) {
         
         resetAlert( completion: { _ in
@@ -76,7 +77,7 @@ class ViewController: UIViewController, TileViewDelegate{
         updateAll()
     }
     
-    
+    // func to update all stuffs after the model changed
     func updateAll() {
         for i in 0..<myTiles.count {
             if model.isFaceUp(i) {
@@ -154,7 +155,9 @@ class ViewController: UIViewController, TileViewDelegate{
     }
     
     
-    
+    // should flip?
+    // look at if this is in test mode or
+    // if the index is too big?
     func shouldFlip(_ mybutton: TileView, index: Int) -> Bool {
         
         if (model.isFaceUp(index)){
@@ -194,6 +197,7 @@ class ViewController: UIViewController, TileViewDelegate{
         
     }
     
+    // after flip, update the model
     func didFlip(_ mybutton: TileView, index: Int) {
         if model.canOpen > index {
             model.tilesArray[index].faceUp = true
@@ -207,7 +211,7 @@ class ViewController: UIViewController, TileViewDelegate{
     
 }
 
-
+// delegate
 extension ViewController : HSTVCDelegate {
     
     func didSelect(_ holidayType: HolidayType) {
